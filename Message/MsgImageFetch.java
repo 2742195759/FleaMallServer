@@ -55,5 +55,4 @@ public class MsgImageFetch extends Message{
 		Authority[] a = { new Authority("Commodity", null , "R") } ;  ///需要对商品的可读权限,以后还可以有个筛选啥的.可以作为另一个权限的表现.
 		return a;
 	}
-
 }
