@@ -1,4 +1,6 @@
 package Message;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -111,10 +113,12 @@ public abstract class Message implements java.io.Serializable{
 		Respond res = null ; /// 返回的Rsp.
 		try {
 			Socket sock = new Socket(server_ip , port) ;
-			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream()) ; 
-			ObjectInputStream ois = new ObjectInputStream(sock.getInputStream()) ;
-			oos.writeObject(this); 
-			res = (Respond) ois.readObject() ; 
+			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(
+			        sock.getOutputStream() , 4096)) ;
+			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(
+			        sock.getInputStream() , 4096)) ;
+			oos.writeObject(this);
+			res = (Respond) ois.readObject() ;
 			sock.close() ;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
