@@ -34,6 +34,7 @@ public class MsgImageFetch extends Message{
 				+ "where cno = %s" , cno)) ; rs.next() ; 
 		img.size = rs.getInt("size") ; 
 		}
+		//img.data = null ; 
 		return img ; 
 	}
 
