@@ -35,6 +35,7 @@ public class MsgCommodityByTime extends Message{
 						+ "order by flea_date desc LIMIT %d OFFSET %d", 
 				page_num , page_start)) ;
 		rmr.AddMultiRow(rs ,"sno" , "cno" , "detail" , "brief" , "price" , "addr" , "flea_date");
+		System.out.printf("size = %d\n", rmr.size()) ; 
 		return rmr ; 
 	}
 
