@@ -27,8 +27,8 @@ public class Main {
 				Socket cli = ss.accept() ;
 				System.out.print(cli);
 				System.out.print("Accept Successful\n");
-				ObjectInputStream ois = new ObjectInputStream(cli.getInputStream()) ;
-				ObjectOutputStream oos = new ObjectOutputStream(cli.getOutputStream()) ; 
+				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(cli.getInputStream() , 4096)) ;
+				ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(cli.getOutputStream() , 4096)) ; 
 				Message msg = (Message) ois.readObject() ;
 				msg.print();
 				Connection c = mysql.getConn() ;
