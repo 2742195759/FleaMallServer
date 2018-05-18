@@ -22,19 +22,26 @@ public class Main {
 		try {
 			ServerSocket ss = new ServerSocket(3511);
 			while(true) {
-				System.out.printf("Listening for connect") ; 
+				System.out.printf("Listening for connect\n") ; 
+				try {
 				Socket cli = ss.accept() ;
+				System.out.print(cli);
 				System.out.print("Accept Successful\n");
-				ObjectInputStream ois = new ObjectInputStream(cli.getInputStream()) ;
-				ObjectOutputStream oos = new ObjectOutputStream(cli.getOutputStream()) ; 
+				ObjectInputStream ois = new ObjectInputStream((cli.getInputStream())) ;
+				ObjectOutputStream oos = new ObjectOutputStream((cli.getOutputStream())) ; 
 				Message msg = (Message) ois.readObject() ;
 				msg.print();
 				Connection c = mysql.getConn() ;
 				oos.writeObject(msg.wrapHandle(c)); 
 				cli.close();
 				mysql.closeConn();
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+					continue ; 
+				}
 			}
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
