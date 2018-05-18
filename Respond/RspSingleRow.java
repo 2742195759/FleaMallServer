@@ -47,6 +47,7 @@ public class RspSingleRow extends Respond {
 		}
 		}
 		catch(SQLException e) {
+			e.printStackTrace();
 			state = "Server Error : FromRS have get a error string column name\n" ; 
 		}
 		return this ; 

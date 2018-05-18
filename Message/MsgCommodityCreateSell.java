@@ -70,12 +70,11 @@ public class MsgCommodityCreateSell extends Message{
 				sql = SqlTool.genUpdateRow("Commodity", cols , vals, w_id , w_val) ; 
 			}
 			int r = stm.executeUpdate(sql) ;
-			if(r == 0) rsp.setState("[Warning]:\nNo Row Have Create , Please Check Your Parameters\n");
-			rsp.setExtra("" + r);
 			if(is_create) {
 				String sell_sql = String.format("insert into Selling (cno , sno , flea_date) values (\'%s\' , \'%s\' , now())", vals[0] , s[0]) ; 
 				stm.executeUpdate(sell_sql) ; 
 			}
+			rsp.setExtra(vals[0]);
 		}
 		catch(Exception e) {
 			conn.rollback();

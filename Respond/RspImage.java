@@ -44,5 +44,6 @@ public class RspImage extends Respond{ ///一个表示一个图片.
 		FileOutputStream fos = new FileOutputStream(path) ; 
 		fos.write(data);
 		System.out.print("RspImage.java:45\nSave Image in " + path);
+		fos.close(); 
 	}
 }

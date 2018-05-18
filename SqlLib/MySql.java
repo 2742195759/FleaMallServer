@@ -22,7 +22,7 @@ public class MySql {
 	
 
 	protected Connection conn = null; 
-	private String data_base_path = DataBase_Url + DataBase_Name + "?" + "user=" + DataBase_User+"&password=" + DataBase_Pword + "&useUnicode=true&characterEncoding=utf-8";
+	private String data_base_path = DataBase_Url + DataBase_Name + "?" + "user=" + DataBase_User+"&password=" + DataBase_Pword + "&useUnicode=true&characterEncoding=utf8";
 	public MySql() {
 		init() ; 
 	}	
