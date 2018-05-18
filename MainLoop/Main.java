@@ -22,11 +22,11 @@ public class Main {
 		try {
 			ServerSocket ss = new ServerSocket(3511);
 			while(true) {
-				System.out.printf("Listening for connect\n") ; 
+				System.out.printf("Listening for connect") ; 
 				Socket cli = ss.accept() ;
 				System.out.print("Accept Successful\n");
-				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(cli.getInputStream() , 4096)) ;
-				ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(cli.getOutputStream() , 4096)) ; 
+				ObjectInputStream ois = new ObjectInputStream(cli.getInputStream()) ;
+				ObjectOutputStream oos = new ObjectOutputStream(cli.getOutputStream()) ; 
 				Message msg = (Message) ois.readObject() ;
 				msg.print();
 				Connection c = mysql.getConn() ;
