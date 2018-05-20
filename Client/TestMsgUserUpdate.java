@@ -12,7 +12,7 @@ public class TestMsgUserUpdate {
 		Respond r ; RspSingleRow rsr ; 
 		r = new MsgAccoutUpdate("201492275" , "3511", "熊雄" , null , "4舍210" , "18340879753").sendAndReturn() ; 
 		assertEquals(r.getState() , "success");
-		rsr = (RspSingleRow) new MsgLogin("201492275" , "3511").sendAndReturn() ;
+		rsr = (RspSingleRow) new MsgAccountInfo("201492275" , "3511").sendAndReturn() ;
 		assertEquals(rsr.getState() , "success") ; 
 		assertEquals(rsr.getString("nick") , "熊雄") ;
 		assertEquals(rsr.getString("addr") , "4舍210") ; 

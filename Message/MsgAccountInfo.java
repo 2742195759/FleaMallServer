@@ -16,10 +16,10 @@ import Respond.RspSingleRow;
  * 	rsp.state.equal("success") 
  * 表示存在这个账户,并且可以使用getXXX来获取set内的信息.
  */
-public class MsgLogin extends Message{
+public class MsgAccountInfo extends Message{
 	//public static final String fail_acc_or_pword = "No such account\n" ; 
 	String acc ; 
-	public MsgLogin(String tacc , String tpassword) {
+	public MsgAccountInfo(String tacc , String tpassword) {
 		super(tacc , tpassword) ;
 		acc = tacc ; 
 	}
@@ -29,7 +29,7 @@ public class MsgLogin extends Message{
 		Statement stm = stool.getSimpleStatement() ;
 		ResultSet rs = stm.executeQuery("SELECT * from User where sno = " + acc) ;
 		if(rs.next()) {
-			rsr.insertFromResultSet(rs , "sno" , "addr" , "conway" , "nick") ; 
+			rsr.insertFromResultSet(rs , "sno" , "addr" , "conway" , "nick" , "created_at") ; 
 			return rsr ;
 		}
 		return null;  ///这个逻辑是不会走到的.

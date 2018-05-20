@@ -4,10 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Message.Message;
-import Message.MsgAccountDelete;
-import Message.MsgLogin;
-import Message.MsgRegister;
+import Message.*;
 import Respond.Respond;
 import Respond.RspSingleRow;
 
@@ -26,7 +23,7 @@ public class TestCreateAndDeleteAccount {
 		rsp = (Respond) msg.sendAndReturn() ;
 		assertEquals(rsp.getState() , "AlreadyExist") ; 
 		///查看是否存在
-		MsgLogin mlg = new MsgLogin("201492111" , "1111") ; 
+		MsgAccountInfo mlg = new MsgAccountInfo("201492111" , "1111") ; 
 		RspSingleRow rsl = (RspSingleRow) mlg.sendAndReturn() ; 
 		assertEquals(rsl.getState() , "success") ; 
 		assertEquals(rsl.getString("sno") , "201492111") ;

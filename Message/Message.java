@@ -88,14 +88,14 @@ public abstract class Message implements java.io.Serializable{
 	/**
 	 * 
 	 */
-	//static final String server_ip = "127.0.0.1" ;
-	//static final int port = 3511 ;
-	//static final String image_path = "/home/xopngkun/桌面/image/" ; 
-	//static final String path_delm = "/" ; 
-	static final String server_ip = "211.159.180.189" ;
+	static final String server_ip = "10.42.0.1" ;
 	static final int port = 3511 ;
-	static final String image_path = "C:\\image\\" ;
-	static final String path_delm = "\\" ; 
+	static final String image_path = "/home/xopngkun/桌面/image/" ; 
+	static final String path_delm = "/" ; 
+//	static final String server_ip = "211.159.180.189" ;
+//	static final int port = 3511 ;
+//	static final String image_path = "C:\\image\\" ;
+//	static final String path_delm = "\\" ; 
 	protected static String getPhotePath(String cno , int pno) {
 		return String.format(image_path + "%s%s%03d.jpg", cno , path_delm , pno) ; 
 	}
@@ -113,10 +113,8 @@ public abstract class Message implements java.io.Serializable{
 		Respond res = null ; /// 返回的Rsp.
 		try {
 			Socket sock = new Socket(server_ip , port) ;
-			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(
-			        sock.getOutputStream() , 4096)) ;
-			ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(
-			        sock.getInputStream() , 4096)) ;
+			ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream()) ;
+			ObjectInputStream ois = new ObjectInputStream(sock.getInputStream());
 			oos.writeObject(this);
 			res = (Respond) ois.readObject() ;
 			sock.close() ;
