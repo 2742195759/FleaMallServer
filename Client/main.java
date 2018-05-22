@@ -13,8 +13,9 @@ import Message.*;
 import Respond.*;
 public class main {
 	static public void main(String[] arg) throws UnsupportedEncodingException {
-		String s = "我的世界" ; 
-		byte[] bytes = (s.getBytes()) ;
-		System.out.print(bytes);
+		RspDate rsp = (RspDate) new MsgImageDate("1111111" , 0).sendAndReturn() ; 
+		//assertEquals(rsp.getState() , "successss") ; 
+		System.out.println( rsp.date ) ; 
+		//assert(false)  ;
 	}
 }
