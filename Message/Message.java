@@ -88,14 +88,14 @@ public abstract class Message implements java.io.Serializable{
 	/**
 	 * 
 	 */
-	static final String server_ip = "10.42.0.1" ;
-	static final int port = 3511 ;
-	static final String image_path = "/home/xopngkun/桌面/image/" ; 
-	static final String path_delm = "/" ; 
-//	static final String server_ip = "211.159.180.189" ;
+//	static final String server_ip = "10.42.0.1" ;
 //	static final int port = 3511 ;
-//	static final String image_path = "C:\\image\\" ;
-//	static final String path_delm = "\\" ; 
+//	static final String image_path = "/home/xopngkun/桌面/image/" ; 
+//	static final String path_delm = "/" ; 
+	static final String server_ip = "211.159.180.189" ;
+	static final int port = 3511 ;
+	static final String image_path = "C:\\image\\" ;
+	static final String path_delm = "\\" ; 
 	protected static String getPhotePath(String cno , int pno) {
 		return String.format(image_path + "%s%s%03d.jpg", cno , path_delm , pno) ; 
 	}
@@ -131,7 +131,9 @@ public abstract class Message implements java.io.Serializable{
 			///根据传入的参数和用户名来验证。是否要进行other/self的读写。
 			///如果pword==null则相对的r / w -> or , ow ; 需要的权限一般更高。
 			///如果pword!=null则r / w 改写为 sr , sw ; 表示对自己修改。
-			if(pword == null || no == null) 	a.other = "1" ;
+			///default is other
+			a.other = "1" ; 
+			if(pword == null || no == null) a.other = "1" ;
 			else if((isOwner(conn , no)))a.other = "0" ; 
 			if(a.check(conn , no) == false) 
 				return false ; 
