@@ -132,7 +132,9 @@ public abstract class Message implements java.io.Serializable{
 			///根据传入的参数和用户名来验证。是否要进行other/self的读写。
 			///如果pword==null则相对的r / w -> or , ow ; 需要的权限一般更高。
 			///如果pword!=null则r / w 改写为 sr , sw ; 表示对自己修改。
-			if(pword == null || no == null) 	a.other = "1" ;
+			///default is other
+			a.other = "1" ; 
+			if(pword == null || no == null) a.other = "1" ;
 			else if((isOwner(conn , no)))a.other = "0" ; 
 			if(a.check(conn , no) == false) 
 				return false ; 
