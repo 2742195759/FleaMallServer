@@ -1,0 +1,18 @@
+@startuml
+start
+:"控制流进入WrapHandle中";
+:"获取Authority[] l_au" ; 
+:"控制流进入CheckAuthority" ;
+if ("l_au[] 所有的l_au[i]都满足") then (yes)
+    : "success = true" ; 
+else (no)
+    : "success = false" ; 
+endif
+if("success == true") then (yes) 
+    : "进入Handle()函数获得Respond" ; 
+else (no)
+    : "Respond.state设置为AccessDenied" ; 
+endif 
+: "返回Respond" ; 
+end
+@enduml

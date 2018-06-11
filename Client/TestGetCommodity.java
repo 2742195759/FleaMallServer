@@ -22,7 +22,7 @@ public class TestGetCommodity {
 		r = new MsgCommodityCreateSell("201492111" ,"这个是个头巾", "胡歌同款头巾(二手)" , "20" , "4舍210" , "0000" , null).sendAndReturn() ; 
 		assertEquals(r.getState() , "WrongPassword") ; 
 	
-		r = new MsgCommodityCreateSell("20149	2111" ,"这个是个头巾", "胡歌同款头巾(二手)" , "20" , "4舍210" , "1111" , null).sendAndReturn() ; 
+		r = new MsgCommodityCreateSell("201492111" ,"这个是个头巾", "胡歌同款头巾(二手)" , "20" , "4舍210" , "1111" , null).sendAndReturn() ; 
 		assertEquals(r.getState() , "success") ; 
 		///测试ByTable
 		RspMultiRow rmr = (RspMultiRow) new MsgCommodityByTable("201492111" , null , MsgCommodityByTable.Sell).sendAndReturn() ; 
